@@ -41,4 +41,8 @@ public class BankAccount{
     }
   }
 
+  public String toString(){
+    return Integer.toString(accountID)+"\t"+ String.valueOf(balance);
+  }
+
 }
