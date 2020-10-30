@@ -3,8 +3,7 @@ public class BankAccount{
   private int accountID;
   private String password;
 
-  public BankAccount(double b, int a, String p){
-    balance = b;
+  public BankAccount(int a, String p){
     accountID = a;
     password = p;
   }
@@ -42,7 +41,21 @@ public class BankAccount{
   }
 
   public String toString(){
-    return Integer.toString(accountID)+"\t"+ String.valueOf(balance);
+    return "#"+Integer.toString(accountID)+"\t"+ "$"+String.valueOf(balance);
+  }
+
+  private boolean authenticate(String password){
+    return password.equals(this.password);
+
+  }
+
+  public boolean transferTo(BankAccount other, double amount, String password){
+    if (authenticate(password)&&withdraw(amount)){
+      if (other.deposit(amount)){
+        return true;
+      }
+    }
+    return false;
   }
 
 }
